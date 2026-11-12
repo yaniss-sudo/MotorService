@@ -17,7 +17,7 @@
 <!-- SIDEBAR KIRI -->
 <aside class="app-sidebar" id="appSidebar">
     <div class="sidebar-header">
-        <a class="sidebar-brand" href="{{ Route::has('dashboard') ? route('dashboard') : route('pelanggan.index') }}">
+        <a class="sidebar-brand" href="{{ route('dashboard') }}">
             <img src="{{ asset('favicon.png') }}" alt="Logo">
             <div class="sidebar-brand-text">
                 <span class="sidebar-brand-title">ServiceMotor</span>
@@ -34,18 +34,16 @@
     </div>
 
     <nav class="sidebar-nav">
-        @if(Route::has('dashboard'))
-            <div class="sidebar-section-label">Ringkasan</div>
-            <a class="sidebar-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="14" width="7" height="7"></rect>
-                    <rect x="3" y="14" width="7" height="7"></rect>
-                </svg>
-                <span>Dashboard</span>
-            </a>
-        @endif
+        <div class="sidebar-section-label">Ringkasan</div>
+        <a class="sidebar-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Dashboard</span>
+        </a>
 
         <div class="sidebar-section-label">Operasional Bengkel</div>
 
@@ -96,7 +94,7 @@
 
     @auth
     <div class="sidebar-footer">
-        <a href="{{ Route::has('profile.edit') ? route('profile.edit') : '#' }}" class="user-pill w-100 justify-content-between">
+        <a href="{{ route('profile.edit') }}" class="user-pill w-100 justify-content-between">
             <span class="text-truncate">{{ auth()->user()->name }}</span>
             <span class="role-tag">{{ auth()->user()->role }}</span>
         </a>
@@ -120,7 +118,7 @@
 <div class="app-main">
     <!-- TOPBAR MOBILE -->
     <header class="mobile-topbar">
-        <a class="sidebar-brand" href="{{ Route::has('dashboard') ? route('dashboard') : route('pelanggan.index') }}">
+        <a class="sidebar-brand" href="{{ route('dashboard') }}">
             <img src="{{ asset('favicon.png') }}" alt="Logo" style="width: 28px; height: 28px;">
             <span class="sidebar-brand-title" style="font-size: 0.98rem;">ServiceMotor</span>
         </a>
