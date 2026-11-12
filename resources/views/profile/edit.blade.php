@@ -1,29 +1,44 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layouts.main')
+@section('title', 'Profile')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
+@section('content')
+<!-- BANNER HEADER -->
+<div class="module-banner" style="background-image: url('{{ asset('images/sergey-zolkin-_UeY8aTI6d0-unsplash.jpg') }}');">
+    <div class="module-banner-content">
+        <div>
+            <span class="module-eyebrow">Pengaturan Akun</span>
+            <h1 class="page-title">Profile</h1>
+            <p class="page-subtitle">Kelola informasi profil dan kata sandi akun Anda.</p>
+        </div>
+    </div>
+</div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
+<div class="form-shell" style="max-width: 860px;">
+    <div class="editor-card">
+        <div class="editor-body">
+            <div class="form-section-label">Informasi Profil</div>
+            <div class="max-w-xl">
+                @include('profile.partials.update-profile-information-form')
             </div>
         </div>
     </div>
-</x-app-layout>
+
+    <div class="editor-card mt-3">
+        <div class="editor-body">
+            <div class="form-section-label">Kata Sandi</div>
+            <div class="max-w-xl">
+                @include('profile.partials.update-password-form')
+            </div>
+        </div>
+    </div>
+
+    <div class="editor-card mt-3">
+        <div class="editor-body">
+            <div class="form-section-label">Hapus Akun</div>
+            <div class="max-w-xl">
+                @include('profile.partials.delete-user-form')
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
