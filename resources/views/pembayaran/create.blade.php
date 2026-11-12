@@ -35,7 +35,7 @@
                         <option value="">-- Pilih Id Servis --</option>
                         @foreach($daftarServices as $d)
                             <option value="{{ $d->id_servis }}" {{ (string) old('id_servis') === (string) $d->id_servis ? 'selected' : '' }}>
-                                {{ $d->id_servis }} - {{ $d->no_plat }}
+                                #{{ $d->id_servis }} — {{ $d->no_plat }}
                             </option>
                         @endforeach
                     </select>
@@ -53,6 +53,7 @@
                         class="form-control @error('jumlah_biaya') is-invalid @enderror"
                         value="{{ old('jumlah_biaya') }}"
                         min="0"
+                        placeholder="0"
                         required
                     >
                     @error('jumlah_biaya')
@@ -64,19 +65,21 @@
             <!-- KELOMPOK 2: JENIS & KETERANGAN -->
             <div class="form-section-label">Detail Pembayaran</div>
 
-            <div class="row g-3 mb-4">
+            <div class="row g-3">
                 <div class="col-md-6">
-                    <label for="jenis_pembayaran" class="form-label">Jenis Pembayaran</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="jenis_pembayaran" id="tunai" value="Cash / Tunai" {{ old('jenis_pembayaran') === 'Cash / Tunai' ? 'checked' : '' }} required>
-                        <label class="form-check-label" for="tunai">Cash / Tunai</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="jenis_pembayaran" id="nontunai" value="Non Tunai" {{ old('jenis_pembayaran') === 'Non Tunai' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="nontunai">Non Tunai</label>
+                    <label class="form-label d-block">Jenis Pembayaran</label>
+                    <div class="radio-group-box @error('jenis_pembayaran') border-danger @enderror">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="jenis_pembayaran" id="tunai" value="Cash / Tunai" {{ old('jenis_pembayaran') === 'Cash / Tunai' ? 'checked' : '' }} required>
+                            <label class="form-check-label" for="tunai">Cash / Tunai</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="jenis_pembayaran" id="nontunai" value="Non Tunai" {{ old('jenis_pembayaran') === 'Non Tunai' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="nontunai">Non Tunai</label>
+                        </div>
                     </div>
                     @error('jenis_pembayaran')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -87,6 +90,7 @@
                         id="keterangan"
                         rows="3"
                         class="form-control @error('keterangan') is-invalid @enderror"
+                        placeholder="Catatan tambahan (opsional)..."
                     >{{ old('keterangan') }}</textarea>
                     @error('keterangan')
                         <div class="invalid-feedback">{{ $message }}</div>

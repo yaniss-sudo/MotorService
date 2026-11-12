@@ -883,3 +883,41 @@ input[type="date"] {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* RADIO BUTTON GROUP SEJAJAR DENGAN INPUT */
+.radio-group-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+    min-height: 39px;
+    padding: 0.45rem 0.85rem;
+    background-color: #0c0c0f;
+    border: 1px solid var(--border-strong);
+    border-radius: 7px;
+}
+
+.radio-group-box .form-check {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.radio-group-box .form-check-input {
+    margin: 0;
+    background-color: #16161b;
+    border-color: #3f3f46;
+    cursor: pointer;
+}
+
+.radio-group-box .form-check-input:checked {
+    background-color: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.radio-group-box .form-check-label {
+    font-size: 0.84rem;
+    color: #e4e4e7;
+    cursor: pointer;
+}

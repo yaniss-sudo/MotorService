@@ -16,7 +16,7 @@
 
         <div class="editor-header">
             <h1 class="editor-title">Tambah Kendaraan</h1>
-            <span class="id-badge">No Plat: Otomatis</span>
+            <span class="id-badge">Unit Baru</span>
         </div>
 
         <div class="editor-body">
@@ -41,17 +41,19 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="jenis_kendaraan" class="form-label">Jenis Kendaraan</label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="jenis_kendaraan" id="matic" value="Matic" {{ old('jenis_kendaraan') === 'Matic' ? 'checked' : '' }} required>
-                        <label class="form-check-label" for="matic">Matic</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="jenis_kendaraan" id="manual" value="Manual Transmisi" {{ old('jenis_kendaraan') === 'Manual Transmisi' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="manual">Manual Transmisi</label>
+                    <label class="form-label d-block">Jenis Kendaraan</label>
+                    <div class="radio-group-box @error('jenis_kendaraan') border-danger @enderror">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="jenis_kendaraan" id="matic" value="Matic" {{ old('jenis_kendaraan') === 'Matic' ? 'checked' : '' }} required>
+                            <label class="form-check-label" for="matic">Matic</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="jenis_kendaraan" id="manual" value="Manual Transmisi" {{ old('jenis_kendaraan') === 'Manual Transmisi' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="manual">Manual Transmisi</label>
+                        </div>
                     </div>
                     @error('jenis_kendaraan')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -87,10 +89,11 @@
                     @enderror
                 </div>
             </div>
+
             <!-- KELOMPOK 2: PEMILIK & DOKUMEN -->
             <div class="form-section-label">Pemilik &amp; Dokumen</div>
 
-            <div class="row g-3 mb-4">
+            <div class="row g-3">
                 <div class="col-md-6">
                     <label for="nama_pemilik" class="form-label">Nama Pemilik</label>
                     <input
