@@ -34,7 +34,6 @@
     </div>
 
     <nav class="sidebar-nav">
-        <div class="sidebar-section-label">Ringkasan</div>
         <a class="sidebar-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="7" height="7"></rect>
@@ -45,7 +44,7 @@
             <span>Dashboard</span>
         </a>
 
-        <div class="sidebar-section-label">Operasional Bengkel</div>
+        <div class="sidebar-divider"></div>
 
         <a class="sidebar-link {{ request()->routeIs('pelanggan.*') ? 'active' : '' }}" href="{{ route('pelanggan.index') }}">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
