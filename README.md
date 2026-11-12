@@ -1,59 +1,126 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# YZ Service Motor — Sistem Manajemen Operasional Bengkel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi manajemen layanan bengkel motor berbasis web dan REST API yang dibangun menggunakan **Laravel**, **MySQL**, dan **Bootstrap 5**. Sistem ini dirancang untuk mengelola data pelanggan, unit kendaraan, pendaftaran antrean servis, detail pengerjaan mekanik, hingga transaksi pembayaran secara terpadu.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Fitur Utama & Modul Aplikasi
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Aplikasi ini mencakup lima modul operasional utama beserta kontrol hak akses pengguna (`Admin` dan `User`):
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+1. **Data Pelanggan**
+   - Manajemen informasi identitas pemilik kendaraan (`Id Pelanggan`, `Nama Lengkap`, `No HP`, `Alamat Pelanggan`, dan `Pekerjaan`).
+2. **Data Kendaraan**
+   - Pencatatan data unit motor (`No Plat Kendaraan`, `Jenis Kendaraan` dengan pilihan radio button *Matic* / *Manual Transmisi*, `No STNK`, `Tahun Pembuatan`, `Nama Pemilik`, `Warna Kendaraan`, serta unggah foto unit).
+3. **Daftar Service**
+   - Pendaftaran keluhan dan jadwal masuk kendaraan (`Id Servis`, pemilihan `No Plat` dan `Id Pelanggan` via dropdown, pengisian `Nama Pelanggan` secara otomatis melalui AJAX lookup, `Keluhan Kendaraan`, dan `Tanggal Servis`).
+4. **Data Service**
+   - Pencatatan rincian pengerjaan servis (`Id Servis` via dropdown, pemanggilan `Keluhan Kendaraan` secara otomatis, `Estimasi Service`, `Nama Mekanik`, dan `Sparepart Pengganti`).
+5. **Pembayaran Service**
+   - Rekapitulasi dan pencatatan transaksi kasir (`Id Servis` via dropdown, `Jumlah Biaya Servis`, `Jenis Pembayaran` dengan pilihan radio button *Cash / Tunai* / *Non Tunai*, dan `Keterangan`).
+6. **Dashboard & Autentikasi**
+   - Ringkasan metrik operasional bengkel secara *real-time*, daftar servis masuk terbaru, serta pemisahan hak akses antara Admin (CRUD penuh) dan Pengguna biasa (lihat data).
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Teknologi yang Digunakan
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Framework Backend:** Laravel (PHP 8.2+)
+- **Database:** MySQL
+- **Frontend:** Blade Template, Bootstrap 5.3, Custom CSS (`Dark Industrial Theme`), Vanilla JavaScript (AJAX Lookup & Live Table Search)
+- **Pengujian API:** Postman
+- **Version Control:** Git & GitHub
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Panduan Instalasi & Kloning Proyek
 
-### Premium Partners
+Ikuti langkah-langkah berikut untuk menjalankan aplikasi di komputer lokal setelah melakukan kloning dari Git:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 1. Kloning Repositori
+```bash
+git clone https://github.com/yaniss-sudo/MotorService.git
+cd MotorService
+```
 
-## Contributing
+### 2. Instalasi Dependensi
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Konfigurasi Environment & Database
+Salin file `.env.example` menjadi `.env`, lalu sesuaikan pengaturan koneksi database MySQL:
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## Code of Conduct
+Buka file `.env` dan atur bagian database:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=service_motor
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Migrasi Database & Seeder
+Pastikan database `service_motor` sudah dibuat di MySQL, lalu jalankan perintah:
+```bash
+php artisan migrate --seed
+```
+*(Jika menggunakan penyimpanan foto kendaraan, jalankan juga `php artisan storage:link`)*
 
-## Security Vulnerabilities
+### 5. Jalankan Server Lokal
+```bash
+php artisan serve
+```
+Akses aplikasi melalui browser di alamat: **`http://127.0.0.1:8000`**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## Pengujian REST API (Postman)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Aplikasi menyediakan *endpoint* REST API untuk seluruh modul utama yang dapat diuji melalui Postman menggunakan header `Accept: application/json`:
+
+| Modul | Endpoint Dasar | Metode HTTP |
+| :--- | :--- | :--- |
+| **Pelanggan** | `/api/pelanggan` | `GET`, `POST`, `PUT`, `DELETE` |
+| **Kendaraan** | `/api/kendaraan` | `GET`, `POST`, `PUT`, `DELETE` |
+| **Daftar Service** | `/api/daftar-service` | `GET`, `POST`, `PUT`, `DELETE` |
+| **Data Service** | `/api/data-service` | `GET`, `POST`, `PUT`, `DELETE` |
+| **Pembayaran** | `/api/pembayaran` | `GET`, `POST`, `PUT`, `DELETE` |
+
+### Endpoint Lookup Internal (AJAX)
+- `GET /lookup/pelanggan/{id}` — Mengambil data nama lengkap pelanggan berdasarkan ID.
+- `GET /lookup/servis/{id}` — Mengambil deskripsi keluhan kendaraan berdasarkan ID servis.
+
+---
+
+## Struktur Direktori Penting
+
+```text
+├── app/
+│   ├── Http/Controllers/   # Controller Web & API untuk setiap modul
+│   └── Models/             # Model Eloquent & relasi antar tabel
+├── database/
+│   ├── migrations/         # Skema tabel MySQL
+│   └── seeders/            # Data awal & akun pengguna
+├── public/
+│   ├── css/main.css        # Stylesheet utama antarmuka aplikasi
+│   └── images/             # Aset gambar latar antarmuka
+├── resources/views/
+│   ├── auth/               # Halaman Login, Register, & Reset Password
+│   ├── layouts/main.blade.php # Kerangka utama aplikasi (Sidebar & Layout)
+│   ├── pelanggan/          # View CRUD Data Pelanggan
+│   ├── kendaraan/          # View CRUD Data Kendaraan
+│   ├── daftar_service/     # View CRUD Daftar Service
+│   ├── data_service/       # View CRUD Data Service
+│   ├── pembayaran/         # View CRUD Pembayaran Service
+│   ├── dashboard.blade.php # Halaman ringkasan operasional
+│   └── welcome.blade.php   # Halaman pembuka aplikasi
+└── routes/
+    ├── web.php             # Rute halaman web & middleware hak akses
+    └── api.php             # Rute endpoint REST API
+```
