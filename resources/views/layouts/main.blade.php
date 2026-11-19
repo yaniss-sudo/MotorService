@@ -7,10 +7,15 @@
     <title>@yield('title', 'ServiceMotor') - YZ Service Motor</title>
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-enhance.css') }}">
     @stack('styles')
 </head>
 <body>
+<script>try{if(window.innerWidth>=992&&localStorage.getItem('sm.sidebar')==='1')document.body.classList.add('sidebar-collapsed');}catch(e){}</script>
 
 <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
@@ -115,12 +120,32 @@
 
 <!-- AREA KONTEN UTAMA -->
 <div class="app-main">
+    <!-- TOPBAR DESKTOP -->
+    <div class="desktop-topbar">
+        <div class="topbar-left">
+            <button type="button" class="icon-btn" id="sidebarCollapse" aria-label="Lipat sidebar" title="Lipat / buka sidebar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+            </button>
+            <div class="crumb"><span>ServiceMotor</span><span class="sep">/</span><b>@yield('title', 'ServiceMotor')</b></div>
+        </div>
+        <div class="topbar-right">
+            <button type="button" class="cmd-trigger" data-open-cmdk>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span>Cari menu &amp; aksi…</span><kbd>Ctrl K</kbd>
+            </button>
+            <div class="live-clock"><span class="pulse-dot"></span><span id="liveClock">--:--:--</span></div>
+        </div>
+    </div>
     <!-- TOPBAR MOBILE -->
     <header class="mobile-topbar">
         <a class="sidebar-brand" href="{{ route('dashboard') }}">
             <img src="{{ asset('favicon.png') }}" alt="Logo" style="width: 28px; height: 28px;">
             <span class="sidebar-brand-title" style="font-size: 0.98rem;">ServiceMotor</span>
         </a>
+
+        <button type="button" class="btn btn-secondary btn-sm d-inline-flex align-items-center gap-1 ms-auto me-2" data-open-cmdk aria-label="Cari">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
 
         <button type="button" class="btn btn-secondary btn-sm d-inline-flex align-items-center gap-1" id="sidebarOpen" aria-label="Buka menu">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -176,6 +201,7 @@
     closeBtn?.addEventListener('click', closeSidebar);
     backdrop?.addEventListener('click', closeSidebar);
 </script>
+<script src="{{ asset('js/ui-enhance.js') }}" defer></script>
 @stack('scripts')
 </body>
 </html>

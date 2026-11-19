@@ -312,6 +312,9 @@
             }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/ui-enhance.css') }}">
+    <script src="{{ asset('js/ui-enhance.js') }}" defer></script>
 </head>
 
 <body>
