@@ -16,7 +16,7 @@
 
         <div class="editor-header">
             <h1 class="editor-title">Tambah Daftar Service</h1>
-            <span class="id-badge">ID Servis: Otomatis</span>
+            <span class="id-badge">ID Servis: Isi manual</span>
         </div>
 
         <div class="editor-body">
@@ -24,6 +24,27 @@
             <div class="form-section-label">Data Pelanggan &amp; Kendaraan</div>
 
             <div class="row g-3 mb-4">
+                <div class="col-md-5">
+                    <label for="id_servis" class="form-label">Id Servis Pelanggan</label>
+                    <input
+                        type="number"
+                        name="id_servis"
+                        id="id_servis"
+                        class="form-control @error('id_servis') is-invalid @enderror"
+                        value="{{ old('id_servis') }}"
+                        min="1"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="Contoh: 1"
+                        required
+                    >
+                    @error('id_servis')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-7 d-none d-md-block"></div>
+
                 <div class="col-md-5">
                     <label for="id_pelanggan" class="form-label">Id Pelanggan</label>
                     <select name="id_pelanggan" id="id_pelanggan" class="form-select @error('id_pelanggan') is-invalid @enderror" required>

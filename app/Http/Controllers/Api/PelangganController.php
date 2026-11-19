@@ -25,7 +25,12 @@ class PelangganController extends Controller
 
     public function store(Request $request)
     {
-        $pelanggan = Pelanggan::create($request->validate($this->rules()));
+        $data = $request->validate(
+            ['id_pelanggan' => 'required|integer|min:1|max:2147483647|unique:pelanggans,id_pelanggan']
+            + $this->rules(),
+            ['id_pelanggan.unique' => 'ID Pelanggan sudah digunakan, gunakan ID lain.']
+        );
+        $pelanggan = Pelanggan::create($data);
         return response()->json(['success' => true, 'data' => $pelanggan], 201);
     }
 

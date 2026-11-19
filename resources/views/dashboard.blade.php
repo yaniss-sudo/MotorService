@@ -11,11 +11,11 @@
 
     $servisTerbaru = \App\Models\DaftarService::with('pelanggan')
         ->orderByDesc('tanggal_servis')
-        ->orderByDesc('id_servis')
+        ->orderByDesc('created_at')
         ->take(6)
         ->get();
 
-    $pelangganTerbaru = \App\Models\Pelanggan::orderByDesc('id_pelanggan')
+    $pelangganTerbaru = \App\Models\Pelanggan::orderByDesc('created_at')
         ->take(6)
         ->get();
 

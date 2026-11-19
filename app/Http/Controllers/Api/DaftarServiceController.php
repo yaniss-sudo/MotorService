@@ -32,7 +32,12 @@ class DaftarServiceController extends Controller
 
     public function store(Request $request)
     {
-        $service = DaftarService::create($request->validate($this->rules()));
+        $data = $request->validate(
+            ['id_servis' => 'required|integer|min:1|max:2147483647|unique:daftar_services,id_servis']
+            + $this->rules(),
+            ['id_servis.unique' => 'ID Servis sudah digunakan, gunakan ID lain.']
+        );
+        $service = DaftarService::create($data);
         return response()->json(['success' => true, 'data' => $service->load('pelanggan', 'kendaraan')], 201);
     }
 

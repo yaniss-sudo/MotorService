@@ -8,7 +8,11 @@ class DaftarService extends Model
 {
     protected $primaryKey = 'id_servis';
 
-    protected $fillable = ['no_plat', 'id_pelanggan', 'keluhan', 'tanggal_servis'];
+    // ID diisi manual oleh pengguna (bukan auto increment)
+    public $incrementing = false;
+    protected $keyType = 'int';
+
+    protected $fillable = ['id_servis', 'no_plat', 'id_pelanggan', 'keluhan', 'tanggal_servis'];
 
     public function pelanggan()
     {

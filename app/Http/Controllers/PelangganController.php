@@ -20,10 +20,13 @@ class PelangganController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
+            'id_pelanggan' => 'required|integer|min:1|max:2147483647|unique:pelanggans,id_pelanggan',
             'nama_lengkap' => 'required|string|max:100',
             'no_hp'        => ['required', 'regex:/^[0-9+\-\s]{8,20}$/'],
             'alamat'       => 'required|string',
             'pekerjaan'    => 'required|string|max:100',
+        ], [
+            'id_pelanggan.unique' => 'ID Pelanggan sudah digunakan, gunakan ID lain.',
         ]);
 
         Pelanggan::create($data);

@@ -166,7 +166,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n            \"nama_lengkap\": \"yaniss-sudo\",\n            \"no_hp\": \"0899979779090\",\n            \"alamat\": \"kalimantan timur\",\n            \"pekerjaan\": \"huraa\"\n        }",
+          "raw": "{\n            \"id_pelanggan\": 10,\n            \"nama_lengkap\": \"yaniss-sudo\",\n            \"no_hp\": \"0899979779090\",\n            \"alamat\": \"kalimantan timur\",\n            \"pekerjaan\": \"huraa\"\n        }",
           "options": {
             "raw": {
               "language": "json"

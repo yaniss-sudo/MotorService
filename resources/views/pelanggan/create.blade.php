@@ -16,7 +16,7 @@
 
         <div class="editor-header">
             <h1 class="editor-title">Tambah Pelanggan</h1>
-            <span class="id-badge">ID Pelanggan: Otomatis</span>
+            <span class="id-badge">ID Pelanggan: Isi manual</span>
         </div>
 
         <div class="editor-body">
@@ -71,7 +71,21 @@
 
                 <div class="col-md-6">
                     <label for="id_pelanggan" class="form-label">Id Pelanggan</label>
-                    <input type="text" class="form-control" value="Otomatis" disabled readonly>
+                    <input
+                        type="number"
+                        name="id_pelanggan"
+                        id="id_pelanggan"
+                        class="form-control @error('id_pelanggan') is-invalid @enderror"
+                        value="{{ old('id_pelanggan') }}"
+                        min="1"
+                        step="1"
+                        inputmode="numeric"
+                        placeholder="Contoh: 1"
+                        required
+                    >
+                    @error('id_pelanggan')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
 
